@@ -1,0 +1,12 @@
+FROM golang:1.20.2-alpine3.17
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
+
+COPY cmd/web/main.go ./
+
+RUN go build -o /dashy-expense-web
+
+CMD ["/dashy-expense-web"]

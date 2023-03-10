@@ -33,10 +33,11 @@ func (app *application) serve() error {
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
+			"message": "Marklore",
 		})
 	})
-	err := r.Run("localhost:4001") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	// Not defining an address so it can be reached outside of container
+	err := r.Run(":4001")
 	if err != nil {
 		return err
 	}
